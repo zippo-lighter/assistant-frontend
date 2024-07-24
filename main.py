@@ -15,8 +15,7 @@ async def check_connection():
         ui.notify(f'API call failed: {result}', type='negative')
 
 def handle_upload(event: events.UploadEventArguments):
-    global uploaded_file_name 
-    global file_content
+    global uploaded_file_name, file_content
     if event is None:
         return
     uploaded_file_name = event.name
@@ -24,11 +23,12 @@ def handle_upload(event: events.UploadEventArguments):
     
     generate_button.enable()
 
-async def handle_button_click(file_name: str, file_content: bytes):
-    if file_name is None:
+async def handle_button_click():
+    global uploaded_file_name, file_content
+    if uploaded_file_name is None:
         ui.notify('Please upload a file first', type='negative')
         return
-    (success, result) = await call_assistant_api(file_name, file_content)
+    (success, result) = await call_assistant_api(uploaded_file_name, file_content)
     if success:
         ui.notify(f'API call successful: {result}')
     else:
