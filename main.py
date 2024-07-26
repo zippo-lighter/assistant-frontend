@@ -14,6 +14,7 @@ async def check_connection():
         badge.text = '✅'
     else:
         ui.notify(f'API call failed: {result}', type='negative')
+        badge.text = '🟥'
 
 def handle_upload(event: events.UploadEventArguments):
     global uploaded_file_name, file_content
