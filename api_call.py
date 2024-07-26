@@ -35,3 +35,27 @@ async def call_assistant_api(file_name: str, file_content: bytes):
         return (False, e)
     
 
+import re
+
+def extract_mermaid_code(text):
+    """
+    Extracts the Mermaid code block from a given text.
+    
+    Parameters:
+    text (str): The input text containing the Mermaid code block.
+    
+    Returns:
+    str: The extracted Mermaid code block or an empty string if not found.
+    """
+    # Define the regular expression pattern to match the Mermaid code block
+    pattern = r'```mermaid\n(.*?)\n```'
+    
+    # Search for the pattern in the given text using re.DOTALL to match across multiple lines
+    match = re.search(pattern, text, re.DOTALL)
+    
+    # If a match is found, return the Mermaid code block
+    if match:
+        return f"{match.group(1).strip()}"
+    
+    # If no match is found, return an empty string
+    return ""
