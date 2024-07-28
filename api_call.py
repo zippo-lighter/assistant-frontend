@@ -49,7 +49,7 @@ def extract_reviewed_text(text):
     str: The extracted reviewed text or an empty string if not found.
     """
     # Define the regular expression pattern to match the reviewed text block
-    pattern = r'---\n\n(.*?)---\n\n'
+    pattern = r'---\n(.*?)\n---\n'
     
     # Search for the pattern in the given text using re.DOTALL to match across multiple lines
     match = re.search(pattern, text, re.DOTALL)
