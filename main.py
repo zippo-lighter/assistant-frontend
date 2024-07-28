@@ -35,7 +35,6 @@ async def handle_button_click():
     generate_button.disable()
     (success, result) = await call_assistant_api(uploaded_file_name, file_content)
     if success:
-        # ui.notify(f'API call successful!')
         generate_button.set_text('Response bellow')
         indented_result = json.dumps(result, indent=4)
         json_output.set_value(value=indented_result)
@@ -77,8 +76,6 @@ dark.enable()
 with ui.column().classes('w-full  items-center '):
     with ui.row().classes('flex '):
         ui.label('Code 2 Diagram').classes('text-2xl')
-    # with ui.row():
-    #     ui.codemirror(language='JSON', theme='darcula').classes('h-96 w-full').set_value(contentDemo)
     with ui.row():    
         with ui.chip('Backend connection ', icon='question', on_click=check_connection).classes('bg-teal hover:bg-green text-white font-bold py-2 px-4 rounded'):
             ui.tooltip('Click to check your connection to FastAPI').classes('bg-teal-900')
@@ -101,8 +98,6 @@ with ui.column().classes('w-full  items-center '):
             extracted_code = ui.codemirror(language='JSON', theme='darcula').classes('h-96 w-full').on_value_change(on_code_change)
         with ui.tab_panel(diagram).classes('items-center'):
             diagram = ui.mermaid(content='').on('error', lambda e: print(e.args['message'])).classes('h-96 w-full')
-            
-            # ui.label('File upload')
         panels.visible = False
 
 
