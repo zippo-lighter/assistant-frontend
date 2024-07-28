@@ -1,7 +1,7 @@
 import asyncio
 import json
 from nicegui import ui, events, Tailwind
-from api_call import check_backend_connection, call_assistant_api, extract_mermaid_code
+from api_call import check_backend_connection, call_assistant_api, extract_reviewed_text, extract_corrections
 from style import  *
 
 uploaded_file_name = None
